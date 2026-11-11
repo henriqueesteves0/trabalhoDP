@@ -1,0 +1,13 @@
+# =====================================================================
+# URLs AMIGÁVEIS - Reescrita de endereços com o módulo mod_rewrite
+# Tudo que não for um arquivo/pasta real é enviado ao index.php
+# =====================================================================
+RewriteEngine On
+
+# Não reescrever se o caminho corresponder a um arquivo existente
+RewriteCond %{REQUEST_FILENAME} !-f
+# Não reescrever se o caminho corresponder a uma pasta existente
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Envia a rota solicitada para o index.php no parâmetro "url"
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
